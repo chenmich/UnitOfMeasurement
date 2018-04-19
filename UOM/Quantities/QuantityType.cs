@@ -14,4 +14,7 @@ namespace UOM.Quantities
             throw new NotImplementedException("QuntityType.Inserve");
         }
     }
+    public sealed class IdentityType: QuantityType{
+        
+    }
 }

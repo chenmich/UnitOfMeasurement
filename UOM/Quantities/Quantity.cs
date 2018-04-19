@@ -24,4 +24,6 @@ namespace UOM.Quantities
             Type = type;
         }
     }
+
+    
 }
