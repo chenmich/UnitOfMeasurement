@@ -11,7 +11,6 @@ namespace UOM.Quantities
             get; set;
         }
         internal QuantityType(){
-
         }
 
         internal QuantityType(Guid id, string name){
@@ -27,6 +26,7 @@ namespace UOM.Quantities
         public IQuantityType Inverse(){
             throw new NotImplementedException("QuntityType.Inserve");
         }
+
         #region for equality check
 
         public override bool Equals(object obj){
@@ -52,10 +52,5 @@ namespace UOM.Quantities
             return !left.Equals(right);
         }
         #endregion
-    }
-    public sealed class IdentityType: QuantityType{
-        internal IdentityType(){
-
-        }
     }
 }

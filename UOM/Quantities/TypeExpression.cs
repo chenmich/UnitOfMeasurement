@@ -1,15 +1,20 @@
 namespace UOM.Quantities
 {
     internal struct TypeExpression{
-        internal IQuantityType left{
-            get; private set;
+        internal IQuantityType Left{
+            get;  set;
         }
-        internal IQuantityType right{
-            get; private set;
+        internal IQuantityType Right{
+            get;  set;
         }
         
         internal TypeOperator Operator{
-            get; private set;
+            get; set;
+        }
+        internal TypeExpression(IQuantityType left, IQuantityType right, TypeOperator op){
+            Left = left;
+            Right = right;
+            Operator = op;
         }
     }
 }
