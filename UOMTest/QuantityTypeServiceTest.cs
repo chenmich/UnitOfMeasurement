@@ -8,7 +8,8 @@ namespace UOMTest
     {
         [Fact]
         public void TestLogType(){
-            throw new NotImplementedException("QuantityTypeServiceTest.TestLogType");
+            Length l = new Length();
+            //throw new NotImplementedException("QuantityTypeServiceTest.TestLogType");
         }
     }
 }

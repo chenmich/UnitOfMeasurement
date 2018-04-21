@@ -3,26 +3,24 @@ using System;
 
 namespace UOM.Quantities
 {
-    public class Quantity<T>: IQuantity<T>
+    public class Quantity: IQuantity
     { 
         public IQuantityType Type{
             get; private set;
         }        
-        public IQuantity<T> Multiply(IQuantity<T> quntity){
+        public IQuantity Multiply(IQuantity quntity){
             throw new NotImplementedException("Quntity.Multiply");
         }
 
-        public IQuantity<T> Divide(IQuantity<T> quntity){
+        public IQuantity Divide(IQuantity quntity){
             throw new NotImplementedException("Quntity.Divide");
         }
 
-        public IQuantity<T> Inverse(){
+        public IQuantity Inverse(){
             throw new NotImplementedException("Quntity.Inverse");
         }
 
-        public Quantity(IQuantityType type){
-            Type = type;
-        }
+        
     }
 
     

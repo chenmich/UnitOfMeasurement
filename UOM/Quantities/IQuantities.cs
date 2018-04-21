@@ -2,10 +2,10 @@ using System;
 
 namespace UOM.Quantities
 {
-    public interface IQuantity<T>
+    public interface IQuantity
     {
-        IQuantity<T> Multiply(IQuantity<T> quntity);
-        IQuantity<T> Divide(IQuantity<T> quntity);
-        IQuantity<T> Inverse();
+        IQuantity Multiply(IQuantity quntity);
+        IQuantity Divide(IQuantity quntity);
+        IQuantity Inverse();
     }
 }
