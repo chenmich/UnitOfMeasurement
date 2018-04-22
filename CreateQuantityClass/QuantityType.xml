@@ -1,0 +1,132 @@
+<QuantityTypeSet>
+    <QuantityType >
+        <name>Length</name>
+        <id>20cc0029-145b-4c8f-bf10-538e624d3fdb</id>
+        <expression>
+            <left>null</left>
+            <right>null</right>
+            <opertor>null</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Mass</name>
+        <id>4f5c646c-2821-43c8-9218-3f23a350e046</id>
+        <expression>
+            <left>null</left>
+            <right>null</right>
+            <opertor>null</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Time</name>
+        <id>202fa543-23c5-405b-94da-a878d372cc8f</id>
+        <expression>
+            <left>null</left>
+            <right>null</right>
+            <opertor>null</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>ElectricCurrent</name>
+        <id>09815a52-b381-4db1-902c-eda976f6dac5</id>
+        <expression>
+            <left>null</left>
+            <right>null</right>
+            <opertor>null</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>ThermodynamicTemperature</name>
+        <id>a7e3f010-a49c-4e52-8f64-3c4f6a4fa56f</id>
+        <expression>
+            <left>null</left>
+            <right>null</right>
+            <opertor>null</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>AmountOfSubstance</name>
+        <id>cf713134-92b7-4e05-a6ee-7035bee1d886</id>
+        <expression>
+            <left>null</left>
+            <right>null</right>
+            <opertor>null</opertor>
+        </expression>
+    </QuantityType>
+    
+    <QuantityType >
+        <name>LuminousIntensity</name>
+        <id>dd9081df-0b11-4a99-a8b6-e2a93b30f084</id>
+        <expression>
+            <left>null</left>
+            <right>null</right>
+            <opertor>null</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Velocity</name>
+        <id>c2c128f7-7cf5-47a3-a51e-ebbc79b30c82</id>
+        <expression>
+            <left>Length</left>
+            <right>Time</right>
+            <opertor>divide</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Acceleration</name>
+        <id>f4955e08-928b-4d1e-8cd1-16ef3c31ca27</id>
+        <expression>
+            <left>Velocity</left>
+            <right>Time</right>
+            <opertor>divide</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Area</name>
+        <id>c896b5d3-33c4-4739-844b-a40608894419</id>
+        <expression>
+            <left>Length</left>
+            <right>Length</right>
+            <opertor>Multiply</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Volumn</name>
+        <id>86037a26-4433-478b-8ecb-aa94ead00d70</id>
+        <expression>
+            <left>Area</left>
+            <right>Length</right>
+            <opertor>Multiply</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Force</name>
+        <id>fe507c04-9ae9-4707-b0b3-7590a2fb8976</id>
+        <expression>
+            <left>Mass</left>
+            <right>Acceleration</right>
+            <opertor>Multiply</opertor>
+        </expression>
+    </QuantityType>
+
+    <QuantityType >
+        <name>Stress</name>
+        <id>5451fee4-e38f-4a6a-91fa-f82ec90f9df7</id>
+        <expression>
+            <left>Force</left>
+            <right>Area</right>
+            <opertor>divide</opertor>
+        </expression>
+    </QuantityType>
+
+<QuantityTypeSet/>
