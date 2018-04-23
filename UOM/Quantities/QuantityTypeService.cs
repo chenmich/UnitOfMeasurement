@@ -1,33 +1,53 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.IO;
+using System.Xml.Linq;
 
+[assembly: InternalsVisibleTo("UOMTest")]
 namespace UOM.Quantities
 {
-    internal  class QuantityTypeService: IQuantityTypeService{
+    internal  class QuantityTypeService{
         private static readonly Dictionary<TypeExpression, IQuantityType> _typeSet
             = new Dictionary<TypeExpression, IQuantityType>();
-        internal QuantityTypeService(){
+        
+        
+        private static  QuantityTypeService _instance 
+            = new QuantityTypeService();
+        
+        private QuantityTypeService(){
+            XElement _typeImformation = getTypeImformation();
         }
 
-        static QuantityTypeService(){
-            string[] baseTypeName = {"Length","Mass", "Time", "Electric Current",
-                                    "Thermodynamic Temperature", "Tmount of Substance",
-                                    "Luminous Intensity", "Identity"};
-            foreach(string name in baseTypeName){
-                TypeExpression _exp = new TypeExpression();
-                _exp.Right = new IdentityType();
-                _exp.Left = new QuantityType();
-                _exp.Operator = TypeOperator.multiply;
-                _typeSet.Add(_exp, _exp.Left);                     
-            }
-            Console.WriteLine("static constructor!");
+        private XElement getTypeImformation(){
+            string  current = Directory.GetCurrentDirectory();
+            DirectoryInfo curinfo = new DirectoryInfo(current);
+            DirectoryInfo parent = curinfo.Parent;
+            parent = parent.Parent;
+            parent = parent.Parent;
+            parent = parent.Parent;
+            Console.WriteLine("================================");
+            Console.WriteLine(current);
+            Console.WriteLine("==================================");
+            //return XElement.Load(@".../CreateQuantityClass/QuantityType.xml");
+            return new XElement("Length");
         }
-        public  IQuantityType LogType(TypeExpression expression){
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static  QuantityTypeService getService(){
+            return _instance;
+        }
+        
+        private  IQuantityType LogType(TypeExpression expression){
             throw new NotImplementedException("QuantityTypeService.LogType");
         }
-        public IQuantityType GetType(TypeExpression expression){
+        internal IQuantityType getType(string name, Guid id){
+            throw new NotImplementedException("QuantityTypeService.GetType By Name+Id");
+        }
+        internal IQuantityType getType(TypeExpression expression){
             throw new NotImplementedException("QuantityTypeService.GetType");
         }
+        
         public IQuantityType GetBaseType(){
             throw new NotImplementedException("QuantityTypeService.GetBaseType");
         }

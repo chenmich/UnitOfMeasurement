@@ -1,6 +1,6 @@
 namespace UOM.Quantities
 {
-    internal struct TypeExpression{
+    public struct TypeExpression{
         internal IQuantityType Left{
             get;  set;
         }
