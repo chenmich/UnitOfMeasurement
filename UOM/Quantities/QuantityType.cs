@@ -4,18 +4,14 @@ namespace UOM.Quantities
 {
     public class QuantityType:IQuantityType, IEquatable<QuantityType>
     {
-        protected Guid Id{
-            get; set;
+        public TypeId Id{
+            get; private set;
         }
-        protected string Name{
-            get; set;
-        }
-        internal QuantityType(){
+        internal QuantityType(string name):this(new TypeId(Guid.NewGuid(), name)){
         }
 
-        internal QuantityType(Guid id, string name){
+        internal QuantityType(TypeId id){
             Id = id;
-            Name = name;
         }
         public IQuantityType Multiply(IQuantityType quntityType){
             throw new NotImplementedException("quntityType.Multiply");
@@ -37,13 +33,13 @@ namespace UOM.Quantities
             else return this.Equals(_type);
         }
         public bool Equals(QuantityType type){
-            return this.Id.Equals(type.Id) && this.Name.Equals(type.Name);
+            return this.Id.Equals(type.Id);
         }
 
-        public override int GetHashCode() => this.Id.GetHashCode() ^ this.Name.GetHashCode();
+        public override int GetHashCode() => this.Id.GetHashCode();
 
         public override string ToString(){
-            return string.Format("TypeId{0}, TypeName{1}", this.Id, this.Name);
+            return string.Format("TypeId{0}, TypeName{1}", this.Id.Id, this.Id.Name);
         }
         public static  bool operator==(QuantityType left, QuantityType right){
             return left.Equals(right);

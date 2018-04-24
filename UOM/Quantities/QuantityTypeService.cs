@@ -8,29 +8,35 @@ using System.Xml.Linq;
 namespace UOM.Quantities
 {
     internal  class QuantityTypeService{
-        private static readonly Dictionary<TypeExpression, IQuantityType> _typeSet
+        private static readonly Dictionary<TypeExpression, IQuantityType> _expressionSet
             = new Dictionary<TypeExpression, IQuantityType>();
-        
+        private static readonly Dictionary<TypeId, IQuantityType> _typeSet 
+            = new Dictionary<TypeId, IQuantityType>();
         
         private static  QuantityTypeService _instance 
             = new QuantityTypeService();
         
         private QuantityTypeService(){
-            XElement _typeImformation = getTypeImformation();
+            XElement _typeInformations = getTypeInformations();
+            foreach(XElement _typeContent in _typeInformations.Elements("QuantityType")){
+                string _typeName = _typeContent.Element("name").Value;
+                Guid _id = Guid.Parse(_typeContent.Element("id").Value);
+                TypeId _Id = new TypeId(_id, _typeName);
+                IQuantityType _type = new QuantityType(_Id);
+                _typeSet.Add(_Id, _type);                
+            }
         }
 
-        private XElement getTypeImformation(){
+        private XElement getTypeInformations(){
             string  current = Directory.GetCurrentDirectory();
             DirectoryInfo curinfo = new DirectoryInfo(current);
             DirectoryInfo parent = curinfo.Parent;
             parent = parent.Parent;
             parent = parent.Parent;
             parent = parent.Parent;
-            Console.WriteLine("================================");
-            Console.WriteLine(current);
-            Console.WriteLine("==================================");
-            //return XElement.Load(@".../CreateQuantityClass/QuantityType.xml");
-            return new XElement("Length");
+            string typeInfo = parent.FullName + "/CreateQuantityClass/QuantityType.xml";
+            return XElement.Load(typeInfo);
+            //return new XElement("Length");
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -42,7 +48,8 @@ namespace UOM.Quantities
             throw new NotImplementedException("QuantityTypeService.LogType");
         }
         internal IQuantityType getType(string name, Guid id){
-            throw new NotImplementedException("QuantityTypeService.GetType By Name+Id");
+            TypeId _Id = new TypeId(id, name);
+            return _typeSet[_Id];
         }
         internal IQuantityType getType(TypeExpression expression){
             throw new NotImplementedException("QuantityTypeService.GetType");
