@@ -18,13 +18,19 @@ namespace UOM.Quantities
         
         private QuantityTypeService(){
             XElement _typeInformations = getTypeInformations();
+            //register the type
             foreach(XElement _typeContent in _typeInformations.Elements("QuantityType")){
                 string _typeName = _typeContent.Element("name").Value;
                 Guid _id = Guid.Parse(_typeContent.Element("id").Value);
                 TypeId _Id = new TypeId(_id, _typeName);
                 IQuantityType _type = new QuantityType(_Id);
-                _typeSet.Add(_Id, _type);                
+                _typeSet.Add(_Id, _type); 
             }
+            //register the expression of type
+            foreach(XElement _typeContent in _typeInformations.Elements("quantityType")){
+                
+            }           
+            
         }
 
         private XElement getTypeInformations(){
@@ -36,7 +42,7 @@ namespace UOM.Quantities
             parent = parent.Parent;
             string typeInfo = parent.FullName + "/CreateQuantityClass/QuantityType.xml";
             return XElement.Load(typeInfo);
-            //return new XElement("Length");
+            
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
