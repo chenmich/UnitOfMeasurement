@@ -26,60 +26,21 @@ namespace UOM.Quantities
                (TypeId, IQuantityType) result = _getTypeFromXml(_typeContent);
                _typeSet.Add(result.Item1, result.Item2) ;
             }
-            /*
+            
             //register the expression of type
             foreach (XElement _typeContent in _typeInformations.Elements("quantityType")){
                 XElement _expContent = _typeContent.Element("expression");
                 if(_expContent.HasElements){
-                    //get this type
-                    string _typeName = _typeContent.Element("name").Value;
-                    Guid _id = Guid.Parse(_typeContent.Element("id").Value);
-                    TypeId _Id = new TypeId(_id, _typeName);
-                    var _resultType = _typeSet[_Id];
+                    (TypeId, IQuantityType) result = _getTypeFromXml(_expContent);
 
                     //get type operand
                     XElement _leftOperand = _expContent.Element("left");
                     string _leftref = _leftOperand.Attribute("ref").Value;                    
                     XElement _rightOperand = _expContent.Element("right");
                     string _rightref = _rightOperand.Attribute("ref").Value;
-                    var _operandsContents = 
-                        from XElement _operandContent in _typeInformations.Elements("QuantityType")
-                        let  code = _operandContent.Attribute("code").Value
-                        where  code == _leftref || code == _rightref
-                        select _operandContent;
-
-                    IQuantityType lefType, rightType;
-
-                    foreach(XElement _operandContent in _operandsContents){
-                        _typeName = _operandContent.Element("name").Value;
-                        _id = Guid.Parse(_operandContent.Element("id").Value);
-                        _Id = new TypeId(_id, _typeName);
-                        string code = _operandContent.Attribute("code").Value;
-                        if(code == _leftref) 
-                            lefType = _typeSet[_Id];
-                        rightType = _typeSet[_Id];
-                    }
-                    
-                    //get type operator
-                    XElement _operatorContent = _expContent.Element("operator");
-                    TypeOperator op;
-                    switch(_operatorContent.Value){
-                        case "Divide":
-                            op = TypeOperator.Divide;
-                            break;
-                        case "Multiply":
-                            op = TypeOperator.Multiply;
-                            break;
-                        default:
-                            op = TypeOperator.Inserve;
-                            break;
-                    }
-                    TypeExpression _typeExp = new TypeExpression(lefType, rightType, op);
-                    
+                    _typeInformations.Elements("QuantityType").Where((x)=> x.Attribute(""))
                 }
             }
-             */           
-            
         }
 
         private  (TypeId, IQuantityType) _getTypeFromXml(XElement _typeContent)
