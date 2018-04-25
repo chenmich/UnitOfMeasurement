@@ -21,15 +21,14 @@ namespace UOM.Quantities
         private QuantityTypeService(){
             XElement _typeInformations = getTypeInformations();
             //register the type
-            foreach(XElement _typeContent in _typeInformations.Elements("QuantityType")){
-                string _typeName = _typeContent.Element("name").Value;
-                Guid _id = Guid.Parse(_typeContent.Element("id").Value);
-                TypeId _Id = new TypeId(_id, _typeName);
-                IQuantityType _type = new QuantityType(_Id);
-                _typeSet.Add(_Id, _type);
+            foreach(XElement _typeContent in _typeInformations.Elements("QuantityType"))
+            {
+               (TypeId, IQuantityType) result = _getTypeFromXml(_typeContent);
+               _typeSet.Add(result.Item1, result.Item2) ;
             }
+            /*
             //register the expression of type
-            foreach(XElement _typeContent in _typeInformations.Elements("quantityType")){
+            foreach (XElement _typeContent in _typeInformations.Elements("quantityType")){
                 XElement _expContent = _typeContent.Element("expression");
                 if(_expContent.HasElements){
                     //get this type
@@ -76,9 +75,19 @@ namespace UOM.Quantities
                             break;
                     }
                     TypeExpression _typeExp = new TypeExpression(lefType, rightType, op);
+                    
                 }
-            }           
+            }
+             */           
             
+        }
+
+        private  (TypeId, IQuantityType) _getTypeFromXml(XElement _typeContent)
+        {
+            string _typeName = _typeContent.Element("name").Value;
+            Guid _id = Guid.Parse(_typeContent.Element("id").Value);
+            TypeId _Id = new TypeId(_id, _typeName);            
+            return (_Id, new QuantityType(_Id));
         }
 
         private XElement getTypeInformations(){
