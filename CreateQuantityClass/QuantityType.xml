@@ -62,8 +62,8 @@
         <name>Volumn</name>
         <id>86037a26-4433-478b-8ecb-aa94ead00d70</id>
         <expression>
-            <left ref="11">Area</left>
-            <right ref="2">Length</right>
+            <left ref="11"></left>
+            <right ref="2"></right>
             <opertor>Multiply</opertor>
         </expression>
     </QuantityType>
