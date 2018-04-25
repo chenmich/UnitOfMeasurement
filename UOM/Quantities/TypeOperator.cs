@@ -1,4 +1,4 @@
 namespace UOM.Quantities
 {
-    internal enum TypeOperator{ multiply=0, divide, inserve}
+    internal enum TypeOperator{ Multiply=0, Divide, Inserve}
 }

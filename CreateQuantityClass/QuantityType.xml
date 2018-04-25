@@ -2,34 +2,50 @@
     <QuantityType code="1" >
         <name>Identity</name>
         <id>ef5dc410-e551-4f44-838a-35a1ebff0307</id>
+        <expression>
+        </expression>
     </QuantityType>
     <QuantityType code="2">
         <name>Length</name>
         <id>20cc0029-145b-4c8f-bf10-538e624d3fdb</id>
+        <expression>
+        </expression>
     </QuantityType>
     <QuantityType code="3">
         <name>Mass</name>
-        <id>4f5c646c-2821-43c8-9218-3f23a350e046</id>        
+        <id>4f5c646c-2821-43c8-9218-3f23a350e046</id>
+        <expression>
+        </expression>     
     </QuantityType>
     <QuantityType code="4">
         <name>Time</name>
         <id>202fa543-23c5-405b-94da-a878d372cc8f</id>
+        <expression>
+        </expression>
     </QuantityType>
     <QuantityType code="5">
         <name>ElectricCurrent</name>
         <id>09815a52-b381-4db1-902c-eda976f6dac5</id>
+        <expression>
+        </expression>
     </QuantityType>
     <QuantityType code="6">
         <name>ThermodynamicTemperature</name>
         <id>a7e3f010-a49c-4e52-8f64-3c4f6a4fa56f</id>
+        <expression>
+        </expression>
     </QuantityType>
     <QuantityType code="7">
         <name>AmountOfSubstance</name>
         <id>cf713134-92b7-4e05-a6ee-7035bee1d886</id>
+        <expression>
+        </expression>
     </QuantityType>
-    <QuantityType cod="8">
+    <QuantityType code="8">
         <name>LuminousIntensity</name>
         <id>dd9081df-0b11-4a99-a8b6-e2a93b30f084</id>
+        <expression>
+        </expression>
     </QuantityType>
     <QuantityType code="9">
         <name>Velocity</name>
@@ -37,7 +53,7 @@
         <expression>
             <left ref="2"></left>
             <right ref="4"></right>
-            <opertor>divide</opertor>
+            <operator>Divide</operator>
         </expression>
     </QuantityType>
     <QuantityType code="10">
@@ -46,7 +62,7 @@
         <expression>
             <left ref="9"></left>
             <right ref="4"></right>
-            <opertor>divide</opertor>
+            <operator>Divide</operator>
         </expression>
     </QuantityType>
     <QuantityType code="11">
@@ -55,7 +71,7 @@
         <expression>
             <left ref="2"></left>
             <right ref="2"></right>
-            <opertor>Multiply</opertor>
+            <operator>Multiply</operator>
         </expression>
     </QuantityType>
     <QuantityType code="12">
@@ -64,7 +80,7 @@
         <expression>
             <left ref="11"></left>
             <right ref="2"></right>
-            <opertor>Multiply</opertor>
+            <operator>Multiply</operator>
         </expression>
     </QuantityType>
     <QuantityType code="13">
@@ -73,7 +89,7 @@
         <expression>
             <left ref="3"></left>
             <right ref="10"></right>
-            <opertor>Multiply</opertor>
+            <operator>Multiply</operator>
         </expression>
     </QuantityType>
     <QuantityType code="14">
@@ -82,7 +98,7 @@
         <expression>
             <left ref="13"></left>
             <right ref="11"></right>
-            <opertor>divide</opertor>
+            <operator>Divide</operator>
         </expression>
     </QuantityType>
 </QuantityTypeSet>

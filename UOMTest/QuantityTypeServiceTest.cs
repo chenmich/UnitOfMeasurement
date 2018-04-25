@@ -34,13 +34,13 @@ namespace UOMTest
             QuantityType timeType = new QuantityType(time_typeId);
 
             TypeExpression acc_typeExp = 
-                new TypeExpression(velType, timeType, TypeOperator.divide);
+                new TypeExpression(velType, timeType, TypeOperator.Divide);
             TypeExpression vel_typeExp = 
-                new TypeExpression(accType, timeType, TypeOperator.multiply);
+                new TypeExpression(accType, timeType, TypeOperator.Multiply);
             TypeExpression another_vel_typeExp = 
-                new TypeExpression(timeType, accType, TypeOperator.multiply);
+                new TypeExpression(timeType, accType, TypeOperator.Multiply);
             TypeExpression time_typeExp =
-                new TypeExpression(velType, accType, TypeOperator.divide);
+                new TypeExpression(velType, accType, TypeOperator.Divide);
             
             QuantityTypeService service = QuantityTypeService.getService();
 
