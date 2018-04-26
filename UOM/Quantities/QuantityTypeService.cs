@@ -28,27 +28,50 @@ namespace UOM.Quantities
             }
             
             //register the expression of type
-            foreach (XElement _typeContent in _typeInformations.Elements("quantityType")){
+            foreach (XElement _typeContent in _typeInformations.Elements("QuantityType")){
                 XElement _expContent = _typeContent.Element("expression");
                 if(_expContent.HasElements){
-                    (TypeId, IQuantityType) result = _getTypeFromXml(_expContent);
+                    //get result type
+                    TypeId  resultId = _getTypeId(_typeContent);
 
-                    //get type operand
-                    XElement _leftOperand = _expContent.Element("left");
-                    string _leftref = _leftOperand.Attribute("ref").Value;                    
-                    XElement _rightOperand = _expContent.Element("right");
-                    string _rightref = _rightOperand.Attribute("ref").Value;
-                    _typeInformations.Elements("QuantityType").Where((x)=> x.Attribute(""))
+                    //get type operand                               .
+                    string _leftref = _expContent.Element("left")
+                                                .Attribute("ref").Value;                   
+                    string _rightref = _expContent.Element("right")
+                                                    .Attribute("ref").Value;
+                    XElement _leftContent =                   
+                            _typeInformations.Elements("QuantityType")
+                                            .Where((x)=> x.Attribute("code").Value == _leftref)
+                                            .First();
+                    XElement _rightContent = 
+                            _typeInformations.Elements("QuantityType")
+                                            .Where((x)=>x.Attribute("code").Value == _rightref)
+                                            .First();
+                    TypeId leftId = _getTypeId(_leftContent);
+                    TypeId rightId = _getTypeId(_rightContent);
+                    
+                    string _op = _expContent.Element("operator").Value;
+                    TypeOperator op = TypeOperator.Divide;
+                    if(_op == "Multiply") op = TypeOperator.Multiply;
+                    TypeExpression typeExp = 
+                                new TypeExpression(_typeSet[leftId], _typeSet[rightId], op);
+                    LogType(typeExp, _typeSet[resultId]);
                 }
             }
         }
 
-        private  (TypeId, IQuantityType) _getTypeFromXml(XElement _typeContent)
+        private  (TypeId, IQuantityType) _getTypeFromXml(XElement typeContent)
         {
-            string _typeName = _typeContent.Element("name").Value;
-            Guid _id = Guid.Parse(_typeContent.Element("id").Value);
-            TypeId _Id = new TypeId(_id, _typeName);            
+            TypeId _Id = _getTypeId(typeContent);
             return (_Id, new QuantityType(_Id));
+        }
+
+        private  TypeId _getTypeId(XElement typeContent)
+        {
+            string _typeName = typeContent.Element("name").Value;
+            Guid _id = Guid.Parse(typeContent.Element("id").Value);
+            TypeId _Id = new TypeId(_id, _typeName);
+            return _Id;
         }
 
         private XElement getTypeInformations(){
@@ -68,15 +91,45 @@ namespace UOM.Quantities
             return _instance;
         }
         
-        private  IQuantityType LogType(TypeExpression expression){
-            throw new NotImplementedException("QuantityTypeService.LogType");
+        private  void LogType(TypeExpression expression, IQuantityType result){
+            
+            TypeExpression _newExp;
+            IQuantityType _newResult;
+            List<(TypeExpression, IQuantityType)> list = new List<(TypeExpression, IQuantityType)>();
+            list.Add((expression, result));
+            switch(expression.Operator){                
+                case TypeOperator.Multiply:                    
+                    _newResult = expression.Left;
+                    _newExp = new TypeExpression(result, expression.Right, TypeOperator.Divide);
+                    list.Add((_newExp, _newResult));
+                    _newResult = expression.Right;
+                    _newExp = new TypeExpression(result, expression.Left, TypeOperator.Divide);
+                    list.Add((_newExp, _newResult));
+                    break;
+                case TypeOperator.Divide:
+                    _newResult = expression.Left;
+                    _newExp = new TypeExpression(result, expression.Right, TypeOperator.Multiply);
+                    list.Add((_newExp, _newResult));
+
+                    _newExp = new TypeExpression(expression.Right, result, TypeOperator.Multiply);
+                    list.Add((_newExp, _newResult));
+
+                    _newResult = expression.Right;
+                    _newExp = new TypeExpression(expression.Left, result, TypeOperator.Divide);
+                    list.Add((_newExp, _newResult));
+                    break;
+            }
+            foreach((TypeExpression, IQuantityType) entry in list){
+                if(!_expressionSet.ContainsKey(entry.Item1)) 
+                    _expressionSet.Add(entry.Item1, entry.Item2);
+            }
         }
         internal IQuantityType getType(string name, Guid id){
             TypeId _Id = new TypeId(id, name);
             return _typeSet[_Id];
         }
         internal IQuantityType getType(TypeExpression expression){
-            throw new NotImplementedException("QuantityTypeService.GetType");
+            return _expressionSet[expression];
         }
         
         public IQuantityType GetBaseType(){

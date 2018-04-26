@@ -29,7 +29,7 @@ namespace UOM.Quantities
             if(object.ReferenceEquals(this, obj)) return true;
             if(object.ReferenceEquals(obj, null)) return false;
             QuantityType _type = obj as QuantityType;
-            if(_type == null) return false;
+            if(object.Equals(_type, null)) return false;
             else return this.Equals(_type);
         }
         public bool Equals(QuantityType type){
@@ -39,7 +39,7 @@ namespace UOM.Quantities
         public override int GetHashCode() => this.Id.GetHashCode();
 
         public override string ToString(){
-            return string.Format("TypeId{0}, TypeName{1}", this.Id.Id, this.Id.Name);
+            return string.Format("TypeId: {0},   TypeName: {1}", this.Id.Id, this.Id.Name);
         }
         public static  bool operator==(QuantityType left, QuantityType right){
             return left.Equals(right);

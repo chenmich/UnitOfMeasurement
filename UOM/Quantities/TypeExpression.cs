@@ -16,5 +16,13 @@ namespace UOM.Quantities
             Right = right;
             Operator = op;
         }
+        public override int GetHashCode(){
+            return Left.GetHashCode() ^ Operator.GetHashCode() ^ Right.GetHashCode();
+        }
+
+        public override string ToString(){
+            return string.Format("left: {0}   op: {1}    right: {2}", 
+                Left.Id.Name, Operator.ToString(), Right.Id.Name);
+        } 
     }
 }

@@ -12,6 +12,9 @@ namespace UOM.Quantities{
             Id = id;
             Name = name;
         }
+        public override string ToString(){
+            return string.Format("id: {0}\nname: {1}", Id.ToString(), Name);
+        }
         public TypeId(string name):this(Guid.NewGuid(), name){}
         #region for equality
         public override bool Equals(object obj)
