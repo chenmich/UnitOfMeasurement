@@ -6,7 +6,7 @@ namespace UOM.Quantities
     {
         public static IQuantity Length{
             get{
-                return new Quantity();
+                return new Quantity("Length");
             }
         }
     }

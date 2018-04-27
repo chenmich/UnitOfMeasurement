@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml.Linq;
 using System.Linq;
 using UOM.UOMException;
+using System.Reflection;
 
 [assembly: InternalsVisibleTo("UOMTest")]
 namespace UOM.Quantities
@@ -18,10 +19,9 @@ namespace UOM.Quantities
 
         private static  QuantityTypeService _instance 
             = new QuantityTypeService();
-        
         private QuantityTypeService(){
             XElement _typeInformations = getTypeInformations();
-            //register the type
+            //register the type and quantity protype
             foreach(XElement _typeContent in _typeInformations.Elements("QuantityType"))
             {
                (TypeId, IQuantityType) result = _getTypeFromXml(_typeContent);
@@ -64,8 +64,10 @@ namespace UOM.Quantities
         private  (TypeId, IQuantityType) _getTypeFromXml(XElement typeContent)
         {
             TypeId _Id = _getTypeId(typeContent);
-            return (_Id, new QuantityType(_Id));
+            IQuantityType _quantityType = new QuantityType(_Id);
+            return (_Id, _quantityType);
         }
+        
 
         private  TypeId _getTypeId(XElement typeContent)
         {
@@ -135,7 +137,7 @@ namespace UOM.Quantities
         
         internal IQuantityType getType(string typeName){
             foreach(TypeId id in _typeSet.Keys){
-                if(id.Name == id.Name) return _typeSet[id]; 
+                if(id.Name == typeName) return _typeSet[id]; 
             }
             throw new QuantityTypeNotExistedException("In QuantityTypeService.getType(string)");
         }

@@ -22,7 +22,8 @@ namespace UOM.Quantities
 
         private Quantity(){}
         private Quantity(string quantityName){
-            throw new NotImplementedException("Quantity.Quantity(quantityName)");
+           QuantityTypeService service = QuantityTypeService.getService();
+           IQuantityType Type = service.getType("Length");
         }
     
     }

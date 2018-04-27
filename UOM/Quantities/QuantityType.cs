@@ -1,15 +1,13 @@
 using System;
-
+using System.Reflection;
 namespace UOM.Quantities
 {
     public class QuantityType:IQuantityType, IEquatable<QuantityType>
     {
+        
         public TypeId Id{
             get; private set;
         }
-        internal QuantityType(string name):this(new TypeId(Guid.NewGuid(), name)){
-        }
-
         internal QuantityType(TypeId id){
             Id = id;
         }
@@ -21,6 +19,22 @@ namespace UOM.Quantities
         }
         public IQuantityType Inverse(){
             throw new NotImplementedException("QuntityType.Inserve");
+        }
+        private IQuantity getQuantity(){
+            string _typeName = Id.Name;
+            Assembly _thisAssem = typeof(QuantityTypeService).Assembly;
+            string assemFullName = _thisAssem.FullName;
+            Type[] types = _thisAssem.GetTypes();
+            string typeFullName = "";
+            foreach(Type type in types){
+                if(type.FullName.Contains(_typeName)){
+                    typeFullName = type.FullName;
+                    break;
+                }
+            }
+            object[] arg = new object[] {this};
+            IQuantity quantityInstance = _thisAssem.CreateInstance(typeFullName, false, null, null, arg, null, null);
+            return quantityInstance;
         }
 
         #region for equality check
