@@ -3,7 +3,7 @@ using System;
 
 namespace UOM.Quantities
 {
-    public class Quantity: IQuantity
+    public partial class Quantity: IQuantity
     { 
         public IQuantityType Type{
             get; private set;
@@ -20,7 +20,11 @@ namespace UOM.Quantities
             throw new NotImplementedException("Quntity.Inverse");
         }
 
-        
+        private Quantity(){}
+        private Quantity(string quantityName){
+            throw new NotImplementedException("Quantity.Quantity(quantityName)");
+        }
+    
     }
 
     

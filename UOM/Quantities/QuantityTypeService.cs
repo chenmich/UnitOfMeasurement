@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.IO;
 using System.Xml.Linq;
 using System.Linq;
+using UOM.UOMException;
 
 [assembly: InternalsVisibleTo("UOMTest")]
 namespace UOM.Quantities
@@ -132,8 +133,11 @@ namespace UOM.Quantities
             return _expressionSet[expression];
         }
         
-        public IQuantityType GetBaseType(){
-            throw new NotImplementedException("QuantityTypeService.GetBaseType");
+        internal IQuantityType getType(string typeName){
+            foreach(TypeId id in _typeSet.Keys){
+                if(id.Name == id.Name) return _typeSet[id]; 
+            }
+            throw new QuantityTypeNotExistedException("In QuantityTypeService.getType(string)");
         }
 
     }
