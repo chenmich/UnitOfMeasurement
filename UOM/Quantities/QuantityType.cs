@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using UOM.UOMException;
 namespace UOM.Quantities
 {
     public class QuantityType:IQuantityType, IEquatable<QuantityType>
@@ -23,17 +24,14 @@ namespace UOM.Quantities
         private IQuantity getQuantity(){
             string _typeName = Id.Name;
             Assembly _thisAssem = typeof(QuantityTypeService).Assembly;
-            string assemFullName = _thisAssem.FullName;
-            Type[] types = _thisAssem.GetTypes();
-            string typeFullName = "";
-            foreach(Type type in types){
-                if(type.FullName.Contains(_typeName)){
-                    typeFullName = type.FullName;
-                    break;
-                }
-            }
+            Type _type = _thisAssem.GetType("UOM.Quantities." + _typeName);
+            if(_type == null) throw  new  QuantityTypeNotExistedException();
+            string typeFullName = _type.FullName;       
             object[] arg = new object[] {this};
-            IQuantity quantityInstance = _thisAssem.CreateInstance(typeFullName, false, null, null, arg, null, null);
+
+            IQuantity quantityInstance = _thisAssem
+                .CreateInstance(typeFullName, false, 
+                    BindingFlags.ExactBinding, null, arg, null, null) as IQuantity;
             return quantityInstance;
         }
 

@@ -7,9 +7,6 @@ namespace UOM.Quantities
         TypeId Id{
             get;
         }
-        IQuantity ProtoType{
-            get;
-        }
         IQuantityType Multiply(IQuantityType quntityType);
         IQuantityType Divide(IQuantityType quntityType);
         IQuantityType Inverse();
