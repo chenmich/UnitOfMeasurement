@@ -45,10 +45,7 @@ namespace UOMTest
             Assert.True(velType.Equals(service.getType(another_vel_typeExp)));
             Assert.True(timeType.Equals(service.getType(time_typeExp)));
         }
-        [Fact]
-        public void some(){
-            IQuantity length = Quantity.Length;
-            throw new NotImplementedException("some");
-        }      
+        
+        
     }
 }

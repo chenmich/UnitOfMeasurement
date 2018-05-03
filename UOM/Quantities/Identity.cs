@@ -21,8 +21,5 @@ namespace UOM.Quantities
             IQuantityType type = service.getType("Identity");
             Type = type;
         }
-        internal Identity(IQuantityType type){
-            Type = type;
-        }
     }
 }

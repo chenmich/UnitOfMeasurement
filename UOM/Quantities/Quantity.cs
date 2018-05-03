@@ -3,7 +3,7 @@ using System;
 
 namespace UOM.Quantities
 {
-    public partial class Quantity: IQuantity
+    public  class Quantity: IQuantity
     { 
         public IQuantityType Type{
             get; private set;

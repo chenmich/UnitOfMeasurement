@@ -21,7 +21,7 @@ namespace UOM.Quantities
         public IQuantityType Inverse(){
             throw new NotImplementedException("QuntityType.Inserve");
         }
-        private IQuantity getQuantity(){
+        internal IQuantity getQuantity(){
             string _typeName = Id.Name;
             Assembly _thisAssem = typeof(QuantityTypeService).Assembly;
             Type _type = _thisAssem.GetType("UOM.Quantities." + _typeName);
@@ -30,8 +30,7 @@ namespace UOM.Quantities
             object[] arg = new object[] {this};
 
             IQuantity quantityInstance = _thisAssem
-                .CreateInstance(typeFullName, false, 
-                    BindingFlags.ExactBinding, null, arg, null, null) as IQuantity;
+                .CreateInstance(typeFullName) as IQuantity;
             return quantityInstance;
         }
 
