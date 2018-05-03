@@ -2,10 +2,11 @@ using System;
 
 namespace UOM.Quantities
 {
-    public class Length:Quantity{
-        public Length(){
+    public class Velocity:Quantity
+    {
+        public Velocity(){
             QuantityTypeService service = QuantityTypeService.getService();
-            Type = service.getType("Length");
+            Type =  service.getType("Velocity");
         }
     }
 }

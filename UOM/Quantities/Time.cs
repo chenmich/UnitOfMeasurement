@@ -2,27 +2,12 @@ using System;
 
 namespace UOM.Quantities
 {
-    public class Time:IQuantity
+    public class Time:Quantity
     {
-        public IQuantityType Type{
-            get; private set;
+        public Time(){
+            QuantityTypeService service = QuantityTypeService.getService();
+            Type = service.getType("Time");
         }
 
-        public IQuantity Multiply(IQuantity right){
-            throw new NotImplementedException("Time.Multiply");
-        }
-
-        public IQuantity Divide(IQuantity right){
-            throw new NotImplementedException("Time.Divide");
-        }
-
-        public IQuantity Inverse(){
-            throw new NotImplementedException("Time.Inverse");
-        }
-
-        public Time(){}
-        internal Time(IQuantityType type){
-            Type = type;
-        }
     }
 }
