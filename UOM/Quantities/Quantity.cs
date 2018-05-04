@@ -1,10 +1,13 @@
 using System;
-
+using UOM.Units;
 
 namespace UOM.Quantities
 {
     public  class Quantity: IQuantity
     { 
+        public IUnit Unit{
+            get; internal set;
+        }
         public  IQuantityType Type{
             get; internal set;
         }

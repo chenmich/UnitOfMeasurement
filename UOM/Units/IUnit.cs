@@ -3,8 +3,9 @@ using UOM.Quantities;
 
 namespace UOM.Units
 {
-    internal   interface IUnit
+    public   interface IUnit
     {
+        
         IQuantityType QType{
             get;
         }
