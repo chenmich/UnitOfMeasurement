@@ -1,4 +1,5 @@
 using System;
+using UOM.Units;
 
 namespace UOM.Quantities
 {
@@ -7,6 +8,7 @@ namespace UOM.Quantities
         public Mass(){
             QuantityTypeService service = QuantityTypeService.getService();
             Type = service.getType("Mass");
+            Unit = new kilogram();
         }
     }
 }

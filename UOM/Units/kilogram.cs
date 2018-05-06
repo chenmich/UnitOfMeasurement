@@ -3,9 +3,9 @@ using UOM.Quantities;
 
 namespace UOM.Units
 {
-    public class kg:Unit
+    public class kilogram:Unit
     {
-        public kg(){
+        public kilogram(){
             
             IUnit primary = this;
             IUnit common = this;
@@ -14,7 +14,7 @@ namespace UOM.Units
             int[] expression = new int[]{0, 1, 0, 0, 0, 0, 0};
             _setContent("Mass", primary, common, name, symbol, expression);
         }
-        public kg(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] pressionByBaseUnit)
+        public kilogram(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] pressionByBaseUnit)
             :base(qtype, primary, common, name, symbol, pressionByBaseUnit){}
     }
 }

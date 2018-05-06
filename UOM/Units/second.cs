@@ -3,9 +3,9 @@ using UOM.Quantities;
 
 namespace UOM.Units
 {
-    public class s: Unit
+    public class second: Unit
     {
-        public s(){
+        public second(){
             IUnit primary = this;
             IUnit common = this;
             string name = "second";
@@ -14,7 +14,7 @@ namespace UOM.Units
             _setContent("Time", primary, common, name, symbol, expression);
         }
 
-        internal s(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] expressionByBaseUnit)
+        internal second(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] expressionByBaseUnit)
             :base(qtype, primary, common, name, symbol, expressionByBaseUnit){}
 
     }

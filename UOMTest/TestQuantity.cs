@@ -21,7 +21,7 @@ namespace UOMTest
 
             Assert.IsType<meterpersecond>(v.Unit);
             Assert.IsType<meterpersecondsquare>(a.Unit);
-            Assert.IsType<newton>(f.Unit);
+            Assert.IsType<Newton>(f.Unit);
         }
     }
 }

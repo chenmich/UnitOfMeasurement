@@ -4,9 +4,9 @@ using UOM.Quantities;
 
 namespace UOM.Units
 {
-    public class m: Unit
+    public class meter: Unit
     {
-        public m()
+        public meter()
         {
             
             string name = "meter";
@@ -16,7 +16,7 @@ namespace UOM.Units
             int[] expression = new int[]{1, 0, 0, 0, 0, 0, 0};
             _setContent("Length", primary, common, name, symbol, expression);            
         }
-        internal m(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] expression) 
+        internal meter(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] expression) 
             :base(qtype, primary, common, name, symbol, expression){}
     }
     

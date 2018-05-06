@@ -3,9 +3,9 @@ using UOM.Quantities;
 
 namespace UOM.Units
 {
-    public class newton:Unit
+    public class Newton:Unit
     {
-        public newton(){
+        public Newton(){
             IUnit primary = this;
             IUnit common = this;
             string name = "newton";
@@ -14,7 +14,7 @@ namespace UOM.Units
             _setContent("Force", primary, common, name, symbol, epxpression);
         }
 
-        internal newton(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] expressionByBaseUnit):
+        internal Newton(string qtype, IUnit primary, IUnit common, string name, string symbol, int[] expressionByBaseUnit):
             base(qtype, primary, common, name, symbol, expressionByBaseUnit){}
 
     }

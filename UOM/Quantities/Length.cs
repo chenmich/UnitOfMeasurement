@@ -1,4 +1,5 @@
 using System;
+using UOM.Units;
 
 namespace UOM.Quantities
 {
@@ -6,6 +7,7 @@ namespace UOM.Quantities
         public Length(){
             QuantityTypeService service = QuantityTypeService.getService();
             Type = service.getType("Length");
+            Unit = new meter();
         }
     }
 }
