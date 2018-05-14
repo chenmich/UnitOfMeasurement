@@ -101,7 +101,10 @@ namespace UOM.Quantities
             List<(TypeExpression, IQuantityType)> list = new List<(TypeExpression, IQuantityType)>();
             list.Add((expression, result));
             switch(expression.Operator){                
-                case TypeOperator.Multiply:                    
+                case TypeOperator.Multiply:
+                    _newResult = result;
+                    _newExp = new TypeExpression(expression.Right, expression.Left, TypeOperator.Multiply);
+                    list.Add((_newExp, _newResult));                    
                     _newResult = expression.Left;
                     _newExp = new TypeExpression(result, expression.Right, TypeOperator.Divide);
                     list.Add((_newExp, _newResult));
