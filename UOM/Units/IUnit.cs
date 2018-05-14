@@ -1,12 +1,13 @@
 using System;
 using UOM.Quantities;
+using UOM.Units.UnitSys;
 
 namespace UOM.Units
 {
     public   interface IUnit
     {
         
-        IQuantityType QType{
+        IUnitSys Sys{
             get;
         }
 

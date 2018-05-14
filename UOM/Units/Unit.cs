@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UOM.Quantities;
+using UOM.Units.UnitSys;
 
 namespace UOM.Units
 {
@@ -8,7 +9,7 @@ namespace UOM.Units
     {
         private static readonly Dictionary<string, int> _expression =  
             new Dictionary<string, int>();
-        public   IQuantityType QType{
+        public   IUnitSys Sys{
             get;  internal set;
         }
         public   IUnit Multiply(IUnit right){
@@ -18,40 +19,32 @@ namespace UOM.Units
             throw new NotImplementedException("Unit.Divide");
         }
 
-        public string UnitName{
+        public virtual string UnitName{
             get; 
             internal set;
         }
-        public string UnitSymbol{
+        public virtual string UnitSymbol{
             get; 
             internal set;
         }
 
-        public string ExpressionByBaseUnit{
+        public virtual string ExpressionByBaseUnit{
             get{
                 throw new NotImplementedException("Unit.ExpressionByBaseUnit.getter");
             }
         }
-        public IUnit PrimaryUnit{
-            get; internal set;
-        }
-        public IUnit CommonUnit{
-            get; internal set;
-        }
+        
         internal Unit(){}
-        internal Unit(string qtype, IUnit primary, IUnit common, string name, 
+        internal Unit(IUnitSys sys, string name, 
             string symbol, int[] expressionByBaseUnit){
-                _setContent(qtype, primary, common, name, symbol, expressionByBaseUnit);
+                _setContent(sys, name, symbol, expressionByBaseUnit);
         }
-        protected virtual void _setContent(string qtype, IUnit primary, IUnit common, 
+        protected virtual void _setContent(IUnitSys sys,  
             string name, string symbol, int[] expressByBaseUnit){
-                QuantityTypeService service = QuantityTypeService.getService();
-                IQuantityType _qtype = service.getType(qtype);
-                QType = _qtype;
+                Sys = sys;
                 UnitName = name;
                 UnitSymbol = symbol;
-                PrimaryUnit = primary;
-                CommonUnit = common;
+                
                 _expression["m"] = expressByBaseUnit[0];
                 _expression["kg"] = expressByBaseUnit[1];
                 _expression["s"] = expressByBaseUnit[2];

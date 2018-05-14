@@ -8,7 +8,7 @@ namespace UOM.Quantities
         public Force(){
             QuantityTypeService service = QuantityTypeService.getService();
             Type = service.getType("Force");
-            Unit = new Newton();
+            Unit = new newton();
         }
     }
 }
