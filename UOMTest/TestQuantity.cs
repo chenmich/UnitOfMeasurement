@@ -37,8 +37,13 @@ namespace UOMTest
 
             Assert.IsType<Length>(l.Add(l1));
             Assert.IsType<Mass>(m.Substract(m1));
-            Assert.Throws<NotSameQuantityAddException>(()=>m.Add(l));
-            Assert.Throws<NotSameQuantityAddException>(()=>m.Substract(l));
+            Assert.Throws<NotSameQuantityForAddOrSubstractException>(()=>m.Add(l));
+            Assert.Throws<NotSameQuantityForAddOrSubstractException>(()=>m.Substract(l));
+        }
+
+        [Fact]
+        public void TestValue(){
+
         }
     }
 }

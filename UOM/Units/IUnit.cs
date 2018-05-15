@@ -23,6 +23,8 @@ namespace UOM.Units
 
         IUnit Multiply(IUnit right);
         IUnit Divide(IUnit right);
+        float toPrimary(float value);
+        float fromPrimary(float value);
 
     }
 }

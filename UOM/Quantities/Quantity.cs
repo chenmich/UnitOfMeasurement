@@ -32,20 +32,39 @@ namespace UOM.Quantities
         }
 
         public virtual IQuantity Add(IQuantity right){
-            if (!Type.Equals(right.Type))
-                throw new  NotSameQuantityAddException();
+            if (!Type.Equals(right.Type)){
+                string message = "Added by the Quantity " + right.Type.Id.Name;
+                throw new  NotSameQuantityForAddOrSubstractException(message);
+            }
             QuantityType _type = Type as QuantityType;
             return _type.getQuantity();
         }
 
         public virtual IQuantity Substract(IQuantity right){
-            if(!Type.Equals(right.Type))
-                throw new NotSameQuantityAddException();
+            if(!Type.Equals(right.Type)){
+                string message = "Substract by the Quantity " + right.Type.Id.Name;
+                throw new NotSameQuantityForAddOrSubstractException(message);
+            }
             QuantityType _type = Type as QuantityType;
             return _type.getQuantity();
         }
 
-        public Quantity(){}    
+        public float Value{
+            get; internal set;
+        }
+
+        public IQuantity toUnit(IUnit unit){
+            if(!Type.Equals(unit.Sys.QType)){
+                string message = "Cann't convert to the Quantity " + unit.Sys.QType.Id.Name + "'unit!";
+                throw new CannotConvertToUnitException(message);
+            }
+            
+        }
+
+        public Quantity(){}
+        public Quantity(float value){
+            Value = value;
+        }  
     }
 
     

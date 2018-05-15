@@ -33,6 +33,12 @@ namespace UOM.Units
                 throw new NotImplementedException("Unit.ExpressionByBaseUnit.getter");
             }
         }
+        public virtual float toPrimary(float value){
+            return value;
+        }
+        public virtual float fromPrimary(float value){
+            return value;
+        }
         
         internal Unit(){}
         internal Unit(IUnitSys sys, string name, 

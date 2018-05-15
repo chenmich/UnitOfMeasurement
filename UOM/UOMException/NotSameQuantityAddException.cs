@@ -3,14 +3,14 @@ using System.Runtime.Serialization;
 
 namespace UOM.UOMException
 {
-    public class NotSameQuantityAddException:QuantityException
+    public class NotSameQuantityForAddOrSubstractException:QuantityException
     {
-        public NotSameQuantityAddException():base(){}
-        public NotSameQuantityAddException(string message):base(message){}
-        public NotSameQuantityAddException(string message, Exception inner)
+        public NotSameQuantityForAddOrSubstractException():base(){}
+        public NotSameQuantityForAddOrSubstractException(string message):base(message){}
+        public NotSameQuantityForAddOrSubstractException(string message, Exception inner)
             :base(message, inner){}
         
-        public NotSameQuantityAddException(SerializationInfo info, StreamingContext context)
+        public NotSameQuantityForAddOrSubstractException(SerializationInfo info, StreamingContext context)
             :base(info, context){}
         
     }

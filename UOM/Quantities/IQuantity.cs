@@ -8,6 +8,7 @@ namespace UOM.Quantities
         IUnit Unit{
             get;
         }
+        IQuantity toUnit(IUnit unit);
         IQuantityType Type{
             get;
         }
@@ -15,5 +16,8 @@ namespace UOM.Quantities
         IQuantity Divide(IQuantity quantity);
         IQuantity Add(IQuantity quantity);
         IQuantity Substract(IQuantity quantity);
+        float Value{
+            get;
+        }
     }
 }

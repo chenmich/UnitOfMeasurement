@@ -17,6 +17,8 @@ namespace UOM.Units
         }
         internal meter(IUnitSys sys,  string name, string symbol, int[] expression) 
             :base(sys, name, symbol, expression){}
+        
+        
     }
     
 }
