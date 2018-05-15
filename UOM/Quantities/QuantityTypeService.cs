@@ -102,6 +102,11 @@ namespace UOM.Quantities
             list.Add((expression, result));
             switch(expression.Operator){                
                 case TypeOperator.Multiply:
+                //If there is a * b = c
+                //we will get:
+                //b * a = c
+                //c / b = a
+                // c / a = b
                     _newResult = result;
                     _newExp = new TypeExpression(expression.Right, expression.Left, TypeOperator.Multiply);
                     list.Add((_newExp, _newResult));                    
@@ -113,6 +118,11 @@ namespace UOM.Quantities
                     list.Add((_newExp, _newResult));
                     break;
                 case TypeOperator.Divide:
+                //If there is a / b = c
+                //we will get:
+                // b * c = a
+                // c * b = a
+                // a / c = b
                     _newResult = expression.Left;
                     _newExp = new TypeExpression(result, expression.Right, TypeOperator.Multiply);
                     list.Add((_newExp, _newResult));
