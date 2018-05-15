@@ -2,6 +2,7 @@ using System;
 using UOM.Quantities;
 using UOM.Units;
 using UOM.Units.UnitSys;
+using UOM.UOMException;
 using Xunit;
 namespace UOMTest
 {
@@ -26,6 +27,18 @@ namespace UOMTest
             Assert.IsType<meterpersecondsquare>(a.Unit);
             Assert.IsType<newton>(f.Unit);
             Assert.IsType<newton>(f1.Unit);
+        }
+        [Fact]
+        public void TestAddandSubstract(){
+            Length l = new Length();
+            Length l1 = new Length();
+            Mass m = new Mass();
+            Mass m1 = new Mass();
+
+            Assert.IsType<Length>(l.Add(l1));
+            Assert.IsType<Mass>(m.Substract(m1));
+            Assert.Throws<NotSameQuantityAddException>(()=>m.Add(l));
+            Assert.Throws<NotSameQuantityAddException>(()=>m.Substract(l));
         }
     }
 }

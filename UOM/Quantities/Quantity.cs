@@ -1,5 +1,6 @@
 using System;
 using UOM.Units;
+using UOM.UOMException;
 
 namespace UOM.Quantities
 {
@@ -28,6 +29,20 @@ namespace UOM.Quantities
             TypeExpression _Exp = new TypeExpression(this.Type, right.Type, TypeOperator.Divide);
             IQuantity quantity = getQuantity(_Exp) as IQuantity;
             return quantity;
+        }
+
+        public virtual IQuantity Add(IQuantity right){
+            if (!Type.Equals(right.Type))
+                throw new  NotSameQuantityAddException();
+            QuantityType _type = Type as QuantityType;
+            return _type.getQuantity();
+        }
+
+        public virtual IQuantity Substract(IQuantity right){
+            if(!Type.Equals(right.Type))
+                throw new NotSameQuantityAddException();
+            QuantityType _type = Type as QuantityType;
+            return _type.getQuantity();
         }
 
         public Quantity(){}    

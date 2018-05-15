@@ -11,7 +11,9 @@ namespace UOM.Quantities
         IQuantityType Type{
             get;
         }
-        IQuantity Multiply(IQuantity quntity);
-        IQuantity Divide(IQuantity quntity);
+        IQuantity Multiply(IQuantity quantity);
+        IQuantity Divide(IQuantity quantity);
+        IQuantity Add(IQuantity quantity);
+        IQuantity Substract(IQuantity quantity);
     }
 }
