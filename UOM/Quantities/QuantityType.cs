@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using UOM.UOMException;
+using UOM.Units.UnitSys;
 namespace UOM.Quantities
 {
     public class QuantityType:IQuantityType, IEquatable<QuantityType>
@@ -8,6 +9,9 @@ namespace UOM.Quantities
         
         public TypeId Id{
             get; private set;
+        }
+        public IUnitSys Sys{
+            get; internal set;
         }
         internal QuantityType(TypeId id){
             Id = id;

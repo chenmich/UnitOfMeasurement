@@ -1,23 +1,30 @@
 using System;
 using UOM.Units;
+using UOM.Quantities;
 
 namespace UOM.Units.UnitSys
 {
-    public class AccelerationUnitSys:UnitSys
+    public class AccelerationUnitSys:IUnitSys
     {
-        public override IUnit k{
+        public IQuantityType QType{
+            get{
+                QuantityTypeService service = QuantityTypeService.getService();
+                return service.getType("Acceleration");
+            }
+        }
+        public  IUnit k{
             get{
                 return new kmeterpersecondsquare();
             }
         }
 
-        public override IUnit Primary{
+        public  IUnit Primary{
             get{
                 return new meterpersecondsquare();
             }
         }
 
-        public override IUnit Common{
+        public  IUnit Common{
             get{
                 return new meterpersecondsquare();
             }

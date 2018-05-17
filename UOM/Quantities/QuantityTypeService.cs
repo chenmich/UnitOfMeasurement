@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml.Linq;
 using System.Linq;
 using UOM.UOMException;
+using UOM.Units.UnitSys;
 using System.Reflection;
 
 [assembly: InternalsVisibleTo("UOMTest")]
@@ -64,7 +65,16 @@ namespace UOM.Quantities
         private  (TypeId, IQuantityType) _getTypeFromXml(XElement typeContent)
         {
             TypeId _Id = _getTypeId(typeContent);
-            IQuantityType _quantityType = new QuantityType(_Id);
+            QuantityType _quantityType = new QuantityType(_Id);
+            //set the unitSys
+            string _typeName = _Id.Name;
+            Assembly _thisAssem = typeof(QuantityTypeService).Assembly;
+            Type _type = _thisAssem.GetType("UOM.Units.UnitSys." + _typeName +"UnitSys");
+            if(_type == null) throw  new  QuantityTypeNotExistedException();
+            string typeFullName = _type.FullName;
+            IUnitSys sys = _thisAssem.CreateInstance(typeFullName) as IUnitSys;
+            _quantityType.Sys = sys; 
+
             return (_Id, _quantityType);
         }
         

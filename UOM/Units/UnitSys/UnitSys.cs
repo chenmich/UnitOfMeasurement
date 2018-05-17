@@ -7,16 +7,21 @@ namespace UOM.Units.UnitSys
     public  abstract class UnitSys:IUnitSys
     {
         public virtual IQuantityType QType{
-            get; internal set;
+            get; 
         }
         public virtual IUnit Primary{
-            get; internal set;
+            get;
         }
         public virtual IUnit Common{
-            get; internal set;
+            get;
         }
         public virtual IUnit k{
             get;
         }
+        public UnitSys(string qTypeName){
+            QuantityTypeService service = QuantityTypeService.getService();
+            QType = service.getType(qTypeName);
+        }
+        internal UnitSys(){}
     }
 }

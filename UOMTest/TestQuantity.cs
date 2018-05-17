@@ -42,8 +42,13 @@ namespace UOMTest
         }
 
         [Fact]
-        public void TestValue(){
-
+        public void Test_toUnit(){
+            Length l = new Length();
+            l.Value = 2000.0f;
+            IUnitSys sys = l.Type.Sys;
+            
+            Length l_km = l.toUnit(new kmeter()) as Length;
+            Assert.Equal(2, l_km.Value);
         }
     }
 }

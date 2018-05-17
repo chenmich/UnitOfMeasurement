@@ -2,38 +2,33 @@ using System;
 using UOM.Units;
 using UOM.Quantities;
 
-
 namespace UOM.Units.UnitSys
 {
-    public class VelocityUnitSys:IUnitSys
+    public class AreaUnitSys:IUnitSys
     {
         public IQuantityType QType{
             get{
                 QuantityTypeService service = QuantityTypeService.getService();
-                return service.getType("Velocity");
+                return service.getType("Area");
             }
         }
-        public  IUnit k{
+
+        public IUnit k{
             get{
-                return new kmeterpersecond();
+                return new ksquaremeter();
             }
         }
 
-        public  IUnit Primary{
+        public IUnit Primary{
             get{
-                return new meterpersecond();
+                return new squaremeter();
             }
         }
 
-        public  IUnit Common{
+        public IUnit Common{
             get{
-                return new kmeterpersecond();
+                return new squaremeter();
             }
         }
-
-        public VelocityUnitSys(){
-            
-        }
-
     }
 }

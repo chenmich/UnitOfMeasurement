@@ -1,26 +1,31 @@
 using System;
+using UOM.Quantities;
 
 namespace UOM.Units.UnitSys
 {
-    public class LengthUnitSys:UnitSys
+    public class LengthUnitSys:IUnitSys
     {
-        public override IUnit k{
+        public  IQuantityType QType{
+            get{
+                QuantityTypeService service = QuantityTypeService.getService();
+                return service.getType("Length");
+            }
+        }
+        public  IUnit k{
             get{
                 return new kmeter();
             }
         }
-        public override IUnit Primary{
+        public  IUnit Primary{
             get{
                 return new meter();
             }
         }
-        public override IUnit Common{
+        public  IUnit Common{
             get{
                 return new kmeter();
             }
         }
-        public LengthUnitSys(){
-            
-        }
+        public LengthUnitSys(){}
     }
 }

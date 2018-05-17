@@ -1,37 +1,33 @@
 using System;
-using UOM.Units;
 using UOM.Quantities;
 
 namespace UOM.Units.UnitSys
 {
-    public class ForceUnitSys:IUnitSys
+    public class ThermodynamicTemperatureUnitSys:IUnitSys
     {
         public IQuantityType QType{
             get{
                 QuantityTypeService service = QuantityTypeService.getService();
-                return service.getType("Force");
-            }
-        }
-        public  IUnit k{
-            get{
-                return new knewton();
+                return service.getType("THermodynamicTemperature");
             }
         }
 
-        public  IUnit Primary{
+        public IUnit k{
             get{
-                return new newton();
+                return new kelvin();
             }
         }
 
-        public  IUnit Common{
+        public IUnit Primary{
             get{
-                return new knewton();
+                return new kelvin();
             }
         }
 
-        public ForceUnitSys(){
-            
+        public IUnit Common{
+            get{
+                return new kelvin();
+            }
         }
 
     }

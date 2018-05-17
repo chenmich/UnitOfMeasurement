@@ -3,21 +3,27 @@ using UOM.Quantities;
 
 namespace UOM.Units.UnitSys
 {
-    public class MassUnitSys:UnitSys
+    public class MassUnitSys:IUnitSys
     {
-        public override IUnit k{
+        public IQuantityType QType{
+            get{
+                QuantityTypeService service = QuantityTypeService.getService();
+                return service.getType("Mass");
+            }
+        }
+        public  IUnit k{
             get{
                 return new kilogram();
             }
         }
 
-        public override IUnit Primary{
+        public  IUnit Primary{
             get{
                 return new kilogram();
             }
         }
 
-        public override IUnit Common{
+        public  IUnit Common{
             get{
                 return new kilogram();
             }

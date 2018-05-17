@@ -14,5 +14,9 @@ namespace UOM.Units.UnitSys
         IUnit Common{
             get;
         }
+
+        IUnit k{
+            get;
+        }
     }
 }

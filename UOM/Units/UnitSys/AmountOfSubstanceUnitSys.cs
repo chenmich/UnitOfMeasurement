@@ -1,38 +1,33 @@
 using System;
-using UOM.Units;
 using UOM.Quantities;
 
 namespace UOM.Units.UnitSys
 {
-    public class ForceUnitSys:IUnitSys
+    public class AmountOfSubstanceUnitSys:IUnitSys
     {
         public IQuantityType QType{
             get{
                 QuantityTypeService service = QuantityTypeService.getService();
-                return service.getType("Force");
+                return service.getType("AmountOfSubstance");
             }
         }
-        public  IUnit k{
+
+        public IUnit k{
             get{
-                return new knewton();
+                return new kmole();
             }
         }
 
-        public  IUnit Primary{
+        public IUnit Primary{
             get{
-                return new newton();
+                return new mole();
             }
         }
 
-        public  IUnit Common{
+        public IUnit Common{
             get{
-                return new knewton();
+                return new mole();
             }
         }
-
-        public ForceUnitSys(){
-            
-        }
-
     }
 }
