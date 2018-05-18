@@ -17,17 +17,21 @@ namespace UOMTest
 
         [Fact]
         public void Test_Multiply(){
-            Time t = new Time();
-            Velocity v = new Velocity();
-            IQuantity l = v.Multiply(t);
-            Assert.IsType<Length>(l);
+            QuantityTypeService service = QuantityTypeService.getService();
+            IQuantityType ttype = service.getType("Time");
+            IQuantityType vtype = service.getType("Velocity");
+            IQuantityType ltype = ttype.Multiply(vtype);
+            Assert.Equal("Length", ltype.Id.Name);
+            IQuantityType ltype1 = vtype.Multiply(ttype);
+            Assert.Equal("Length", ltype1.Id.Name);
         } 
         [Fact]
         public void Test_Divide(){
-            Time t = new Time();
-            Length l = new Length();
-            IQuantity v = l.Divide(t);
-            Assert.IsType<Velocity>(v);
+            QuantityTypeService service = QuantityTypeService.getService();
+            IQuantityType ltype = service.getType("Length");
+            IQuantityType ttype = service.getType("Time");
+            IQuantityType vtype = ltype.Divide(ttype);
+            Assert.Equal("Velocity", vtype.Id.Name);
         } 
     }
 }

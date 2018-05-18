@@ -7,56 +7,29 @@ namespace UOM.Quantities
 {
     public  class Quantity: IQuantity
     { 
-        private IUnit _unit;
-        private IQuantityType _type;
         public IUnit Unit{             
-            internal set{
-                if(_type.Equals(null)){
-                    _type = value.Sys.QType;
-                    _unit = value;
-                }else{
-                    if(_type.Equals(value.Sys.QType))
-                        _unit = value;
-                    else{
-                        string message = "The type of Qunatity is not matched by " + value.UnitName;
-                        throw new NotMatchedBetweenQuantityTypeAndUnitException(message); 
-                    }
-                }
-                    
-            }
-            get{
-                return _unit;
-            }
+            get;
+            internal set;
+            
         }
         public  IQuantityType Type{
-            get{
-                return _type;
-            }
-             internal set{
-                 _type = value;
-                 _unit = _type.Sys.Primary;
-             }
+            get;
+            internal set;
         }
         public float Value{
             get; internal set;
         }
-        private Quantity getQuantity(TypeExpression exp){
-            QuantityTypeService service = QuantityTypeService.getService();
-            QuantityType _type = service.getType(exp) as QuantityType;
-            Quantity quantity = _type.getQuantity() as Quantity;
-            quantity.Type = _type;
-            return quantity;
-        }       
+        
         public virtual IQuantity Multiply(IQuantity right){
-            TypeExpression _Exp = new TypeExpression(this.Type, right.Type, TypeOperator.Multiply);
-            IQuantity quantity = getQuantity(_Exp) as IQuantity;
-            return quantity;
+            IQuantityType qtype = Type.Multiply(right.Type);
+            if(qtype.Equals(null)) throw new QuantityTypeNotExistedException("Quantity.Multiplyy");
+            return qtype.getQuantity();
         }
 
         public virtual IQuantity Divide(IQuantity right){
-            TypeExpression _Exp = new TypeExpression(this.Type, right.Type, TypeOperator.Divide);
-            IQuantity quantity = getQuantity(_Exp) as IQuantity;
-            return quantity;
+            IQuantityType qtype = Type.Divide(right.Type);
+            if(qtype.Equals(null)) throw new QuantityTypeNotExistedException("Quantity.Divide");
+            return qtype.getQuantity();
         }
 
         public virtual IQuantity Add(IQuantity right){
@@ -75,9 +48,7 @@ namespace UOM.Quantities
             }
             QuantityType _type = Type as QuantityType;
             return _type.getQuantity();
-        }
-
-        
+        }       
 
         public IQuantity toUnit(IUnit unit){
             if(!Type.Equals(unit.Sys.QType)){
@@ -93,17 +64,17 @@ namespace UOM.Quantities
             return result as IQuantity;
         }
 
-        public Quantity(){}
+        internal Quantity(){}
 
-        public Quantity(IQuantityType type, IUnit unit):this(type, unit, 0){
+        public Quantity(IUnit unit):this(unit,  0){
             
         }
-        public Quantity(IQuantityType type, IUnit unit, float value){
-            Type = type;
+        public Quantity(IUnit unit, float value){
+            Type = unit.Sys.QType;
             Unit = unit;
             Value = value;
         }
-
+    
     }
 
     

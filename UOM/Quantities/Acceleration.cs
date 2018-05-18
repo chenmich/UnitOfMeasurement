@@ -1,20 +1,22 @@
 using System;
 using UOM.Units;
+using UOM.Units.UnitSys;
 
 namespace UOM.Quantities
 {
     public class Acceleration:Quantity
     {
-        public Acceleration():base(QuantityTypeService.getService().getType("Acceleration"), 
-                                    new meterpersecondsquare(), 0){
-            
+        public Acceleration(){
+            QuantityTypeService service = QuantityTypeService.getService();
+            Type = service.getType("Acceleration");
+            IUnitSys sys = new AccelerationUnitSys();
+            Unit = sys.Primary;
         }
-        public Acceleration(IUnit unit, float value):base(QuantityTypeService.getService().getType("Acceleration"), 
-                                                            unit, value){
-
+        public Acceleration(float value):this(){
+            Value = value;
         }
-        public Acceleration(float value):base(QuantityTypeService.getService().getType("Acceleration"), 
-                                                new meterpersecondsquare(), value){
+        public Acceleration(IUnit unit, float value):this(value){
+            Unit = unit;
         }
     }
 }

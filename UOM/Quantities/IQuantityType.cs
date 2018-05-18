@@ -13,6 +13,7 @@ namespace UOM.Quantities
         }
         IQuantityType Multiply(IQuantityType quntityType);
         IQuantityType Divide(IQuantityType quntityType);
-        IQuantityType Inverse();
+        IQuantity getQuantity();
+        
     }
 }

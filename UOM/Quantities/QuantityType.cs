@@ -17,21 +17,22 @@ namespace UOM.Quantities
             Id = id;
         }
         public IQuantityType Multiply(IQuantityType quntityType){
-            throw new NotImplementedException("quntityType.Multiply");
+            TypeExpression exp = new TypeExpression(this,quntityType, TypeOperator.Multiply);
+            QuantityTypeService service = QuantityTypeService.getService();
+            return service.getType(exp);
         }
         public IQuantityType Divide(IQuantityType quntityType){
-            throw new NotImplementedException("QuntityType.Divide");
+            TypeExpression exp = new TypeExpression(this, quntityType, TypeOperator.Divide);
+            QuantityTypeService service = QuantityTypeService.getService();
+            return service.getType(exp);
         }
-        public IQuantityType Inverse(){
-            throw new NotImplementedException("QuntityType.Inserve");
-        }
-        internal IQuantity getQuantity(){
+        public IQuantity getQuantity(){
             string _typeName = Id.Name;
             Assembly _thisAssem = typeof(QuantityTypeService).Assembly;
             Type _type = _thisAssem.GetType("UOM.Quantities." + _typeName);
             if(_type == null) throw  new  QuantityTypeNotExistedException();
             string typeFullName = _type.FullName;       
-            object[] arg = new object[] {this};
+            // object[] arg = new object[] {this};
 
             IQuantity quantityInstance = _thisAssem
                 .CreateInstance(typeFullName) as IQuantity;
