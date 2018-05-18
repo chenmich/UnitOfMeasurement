@@ -7,6 +7,8 @@ namespace UOM.Units
 {
     public class Unit: IUnit
     {
+        private static readonly  float toPrimaryFactor;
+        private static readonly float fromPrimaryFactor;
         private static readonly Dictionary<string, int> _expression =  
             new Dictionary<string, int>();
         public   IUnitSys Sys{
@@ -33,11 +35,11 @@ namespace UOM.Units
                 throw new NotImplementedException("Unit.ExpressionByBaseUnit.getter");
             }
         }
-        public virtual float toPrimary(float value){
-            return value;
+        public virtual float toPrimary(float qvalue){
+            throw new NotImplementedException("Unit.toPrimary");
         }
-        public virtual float fromPrimary(float value){
-            return value;
+        public virtual float fromPrimary(float qvalue){
+            throw new NotImplementedException("Unit.fromPrimary");
         }
         
         internal Unit(){}
@@ -46,7 +48,8 @@ namespace UOM.Units
                 _setContent(sys, name, symbol, expressionByBaseUnit);
         }
         protected virtual void _setContent(IUnitSys sys,  
-            string name, string symbol, int[] expressByBaseUnit){
+            string name, string symbol, int[] expressByBaseUnit)
+        {
                 Sys = sys;
                 UnitName = name;
                 UnitSymbol = symbol;
@@ -58,7 +61,7 @@ namespace UOM.Units
                 _expression["K"] = expressByBaseUnit[4];
                 _expression["mole"] = expressByBaseUnit[5];
                 _expression["cd"] = expressByBaseUnit[6];
-            }
+        }
         
     }
 }

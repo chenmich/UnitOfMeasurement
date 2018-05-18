@@ -57,8 +57,7 @@ namespace UOM.Quantities
             }
             float toPrimaryValue = Unit.toPrimary(Value);
             float fromPrimaryValue = unit.fromPrimary(toPrimaryValue);
-            QuantityType _type = Type as QuantityType;
-            Quantity result = _type.getQuantity() as Quantity;
+            Quantity result =Type.getQuantity() as Quantity;
             result.Unit = unit;
             result.Value = fromPrimaryValue;
             return result as IQuantity;
