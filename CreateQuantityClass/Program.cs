@@ -16,11 +16,19 @@ namespace CreateQuantityClass
                 "Acceleration", "Area", "Volumn", 
                 "Force", "Stress"
             };
-            TemplateGroup group = new TemplateGroupString(@"s(x)::= << <x>  >>");
+            TemplateGroup group = new TemplateGroupString(@"s(x)::= << <x.x> + <y(x.y)> >>
+                                                            y(z)::=<< <z> >>");
             Template st = group.GetInstanceOf("s");
-            st.Add("x", "5");
+            some x = new some();
+            x.x = 5;
+            x.y = 6;
+            st.Add("x", x);
             Console.WriteLine(st.Render());           
             
         }
+    }
+    public struct some{
+        public float x;
+        public float y;
     }
 }
