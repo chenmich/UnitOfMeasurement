@@ -16,6 +16,10 @@ namespace CreateQuantityClass
                 "Acceleration", "Area", "Volumn", 
                 "Force", "Stress"
             };
+            TemplateGroup group = new TemplateGroupString(@"s(x)::= << <x>  >>");
+            Template st = group.GetInstanceOf("s");
+            st.Add("x", "5");
+            Console.WriteLine(st.Render());           
             
         }
     }

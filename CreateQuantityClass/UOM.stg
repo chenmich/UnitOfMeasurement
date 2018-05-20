@@ -1,0 +1,27 @@
+delimiters $, $
+
+quantityTypeSets()::=
+<<
+    <QuantityTypeSet>
+        $QuantityType()$
+    </QuantityTypeSet>
+
+
+>>
+
+QuantityType()::=
+<<
+    <QuantityType code="1" >
+        <name>Identity</name>
+        <id>ef5dc410-e551-4f44-838a-35a1ebff0307</id>
+        $QuantityTypeExpression()$
+    </QuantityType>
+>>
+QuantityTypeExpression()::=
+<<
+    <expression>
+            <left ref="2"></left>
+            <right ref="2"></right>
+            <operator>Multiply</operator>
+    </expression>
+>>
