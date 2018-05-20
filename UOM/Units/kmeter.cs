@@ -1,16 +1,11 @@
 using System;
-
+using UOM.Units.Converter;
 namespace UOM.Units
 {
     public class kmeter:meter
     {
-        public override float fromPrimary(float value) {
-            return value / 1000;
+        public kmeter():base(){
+            Converter = new ScaleConverter(1000f);
         }
-
-        public override float toPrimary(float value){
-            return 1000 * value;
-        }
-        
     }
 }

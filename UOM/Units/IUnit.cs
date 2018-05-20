@@ -1,30 +1,22 @@
 using System;
 using UOM.Quantities;
 using UOM.Units.UnitSys;
+using UOM.Units.Converter;
 
 namespace UOM.Units
 {
     public   interface IUnit
-    {
-        
+    {        
         IUnitSys Sys{
-            get;
-        }
-
-        string UnitName{
-            get;
-        }
-        string UnitSymbol{
-            get;
-        }
-        string ExpressionByBaseUnit{
             get;
         }
 
         IUnit Multiply(IUnit right);
         IUnit Divide(IUnit right);
-        float toPrimary(float qvalue);
-        float fromPrimary(float qvalue);
+        IConverter Converter{
+            get;
+        }
+       
 
     }
 }

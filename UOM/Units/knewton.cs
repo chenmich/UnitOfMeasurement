@@ -1,17 +1,12 @@
 using System;
+using UOM.Units.Converter;
 
 namespace UOM.Units
 {
     public class knewton:newton
     {
-        public override float fromPrimary(float value){
-            return value / 1000;
+        public knewton():base(){
+            Converter = new ScaleConverter(1000f);
         }
-
-        public override float toPrimary(float value){
-            return 1000 * value;
-        }
-
-
     }
 }

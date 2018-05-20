@@ -2,15 +2,12 @@ using System;
 using System.Collections.Generic;
 using UOM.Quantities;
 using UOM.Units.UnitSys;
+using UOM.Units.Converter;
 
 namespace UOM.Units
 {
     public class Unit: IUnit
     {
-        private static readonly  float toPrimaryFactor;
-        private static readonly float fromPrimaryFactor;
-        private static readonly Dictionary<string, int> _expression =  
-            new Dictionary<string, int>();
         public   IUnitSys Sys{
             get;  internal set;
         }
@@ -20,48 +17,17 @@ namespace UOM.Units
         public   IUnit Divide(IUnit right){
             throw new NotImplementedException("Unit.Divide");
         }
-
-        public virtual string UnitName{
-            get; 
-            internal set;
-        }
-        public virtual string UnitSymbol{
-            get; 
-            internal set;
-        }
-
-        public virtual string ExpressionByBaseUnit{
-            get{
-                throw new NotImplementedException("Unit.ExpressionByBaseUnit.getter");
-            }
-        }
-        public virtual float toPrimary(float qvalue){
-            throw new NotImplementedException("Unit.toPrimary");
-        }
-        public virtual float fromPrimary(float qvalue){
-            throw new NotImplementedException("Unit.fromPrimary");
+        public IConverter Converter{
+            get; internal set;
         }
         
         internal Unit(){}
-        internal Unit(IUnitSys sys, string name, 
-            string symbol, int[] expressionByBaseUnit){
-                _setContent(sys, name, symbol, expressionByBaseUnit);
+        public Unit(IUnitSys sys):
+            this(sys,  new ScaleConverter()){
         }
-        protected virtual void _setContent(IUnitSys sys,  
-            string name, string symbol, int[] expressByBaseUnit)
-        {
-                Sys = sys;
-                UnitName = name;
-                UnitSymbol = symbol;
-                
-                _expression["m"] = expressByBaseUnit[0];
-                _expression["kg"] = expressByBaseUnit[1];
-                _expression["s"] = expressByBaseUnit[2];
-                _expression["A"] = expressByBaseUnit[3];
-                _expression["K"] = expressByBaseUnit[4];
-                _expression["mole"] = expressByBaseUnit[5];
-                _expression["cd"] = expressByBaseUnit[6];
+        public Unit(IUnitSys sys, IConverter converter){
+            Sys = sys;
+            Converter = converter;
         }
-        
     }
 }

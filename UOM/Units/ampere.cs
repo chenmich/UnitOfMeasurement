@@ -1,18 +1,14 @@
 using System;
 using UOM.Units.UnitSys;
+using UOM.Units.Converter;
 
 namespace UOM.Units
 {
     public class ampere:Unit
     {
         public ampere(){
-            string name = "ampere";
-            string symbol = "A";
-            int[] expression = new int[]{0, 0, 0, 0, 0, 0, 0};
-            IUnitSys sys = new ElectricCurrentUnitSys();
-            _setContent(sys, name, symbol, expression);
+            Sys = new ElectricCurrentUnitSys();
+            Converter  = new ScaleConverter();
         }
-        public ampere(IUnitSys sys,  string name, string symbol, int[] expressionByBaseUnit)
-            :base(sys, name, symbol, expressionByBaseUnit){}
     }
 }

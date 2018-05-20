@@ -1,6 +1,7 @@
 using System;
 using UOM.Quantities;
 using UOM.Units.UnitSys;
+using UOM.Units.Converter;
 
 namespace UOM.Units
 {
@@ -8,15 +9,9 @@ namespace UOM.Units
     {
         public newton(){
             
-            string name = "newton";
-            string symbol = "N";
-            int[] epxpression = new int[]{1, 1, -2, 0, 0, 0, 0};
-            IUnitSys sys = new ForceUnitSys();
-            _setContent(sys, name, symbol, epxpression);
+            Sys = new ForceUnitSys();
+            Converter = new ScaleConverter();
         }
-
-        internal newton(IUnitSys sys, string name, string symbol, int[] expressionByBaseUnit):
-            base(sys, name, symbol, expressionByBaseUnit){}
 
     }
 }

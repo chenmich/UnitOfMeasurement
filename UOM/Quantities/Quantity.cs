@@ -23,13 +23,23 @@ namespace UOM.Quantities
         public virtual IQuantity Multiply(IQuantity right){
             IQuantityType qtype = Type.Multiply(right.Type);
             if(qtype.Equals(null)) throw new QuantityTypeNotExistedException("Quantity.Multiplyy");
-            return qtype.getQuantity();
+            Quantity quantity = qtype.getQuantity() as Quantity;
+            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            float value = left_value_byPrimary * right_value_byPrimary; 
+            quantity.Value = value;
+            return quantity;
         }
 
         public virtual IQuantity Divide(IQuantity right){
             IQuantityType qtype = Type.Divide(right.Type);
             if(qtype.Equals(null)) throw new QuantityTypeNotExistedException("Quantity.Divide");
-            return qtype.getQuantity();
+            Quantity quantity = qtype.getQuantity() as Quantity;
+            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            float value = left_value_byPrimary / right_value_byPrimary;
+            quantity.Value = value;            
+            return quantity;
         }
 
         public virtual IQuantity Add(IQuantity right){
@@ -38,7 +48,12 @@ namespace UOM.Quantities
                 throw new  NotSameQuantityForAddOrSubstractException(message);
             }
             QuantityType _type = Type as QuantityType;
-            return _type.getQuantity();
+            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            float value = left_value_byPrimary + right_value_byPrimary;
+            Quantity quantity = _type.getQuantity() as Quantity;
+            quantity.Value = value;
+            return quantity;
         }
 
         public virtual IQuantity Substract(IQuantity right){
@@ -47,7 +62,12 @@ namespace UOM.Quantities
                 throw new NotSameQuantityForAddOrSubstractException(message);
             }
             QuantityType _type = Type as QuantityType;
-            return _type.getQuantity();
+            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            float value = left_value_byPrimary - right_value_byPrimary;
+            Quantity quantity = _type.getQuantity() as Quantity;
+            quantity.Value = value;
+            return quantity;
         }       
 
         public IQuantity toUnit(IUnit unit){
@@ -55,8 +75,8 @@ namespace UOM.Quantities
                 string message = "Cann't convert to the Quantity " + unit.Sys.QType.Id.Name + "'unit!";
                 throw new NotMatchedBetweenQuantityTypeAndUnitException(message);
             }
-            float toPrimaryValue = Unit.toPrimary(Value);
-            float fromPrimaryValue = unit.fromPrimary(toPrimaryValue);
+            float toPrimaryValue = Unit.Converter.toPrimary(Value);
+            float fromPrimaryValue = unit.Converter.fromPrimary(toPrimaryValue);
             Quantity result =Type.getQuantity() as Quantity;
             result.Unit = unit;
             result.Value = fromPrimaryValue;
