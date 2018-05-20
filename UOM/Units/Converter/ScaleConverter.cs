@@ -4,18 +4,18 @@ namespace UOM.Units.Converter
 {
     public class ScaleConverter:IConverter
     {
-        private readonly float _factor = 1;
+        private readonly double _factor = 1;
         public ScaleConverter(){}
 
         //factor for from this unit  to primary unit
-        public ScaleConverter(float factor){
+        public ScaleConverter(double factor){
             _factor = factor;
         }
 
-        public float toPrimary(float value){
+        public double toPrimary(double value){
             return _factor * value;
         }
-        public float fromPrimary(float value){
+        public double fromPrimary(double value){
             return  value / _factor;
         }
     }

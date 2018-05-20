@@ -1,6 +1,4 @@
 using System;
-using UOM.Units;
-using UOM.Quantities;
 using UOM.Units.UnitSys;
 using UOM.Units.Converter;
 

@@ -4,7 +4,7 @@ namespace UOM.Units.Converter
 {
     public interface IConverter
     {
-        float toPrimary(float value);
-        float fromPrimary(float value);
+        double toPrimary(double value);
+        double fromPrimary(double value);
     }
 }

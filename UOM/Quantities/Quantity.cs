@@ -16,7 +16,7 @@ namespace UOM.Quantities
             get;
             internal set;
         }
-        public float Value{
+        public double Value{
             get; internal set;
         }
         
@@ -24,9 +24,9 @@ namespace UOM.Quantities
             IQuantityType qtype = Type.Multiply(right.Type);
             if(qtype.Equals(null)) throw new QuantityTypeNotExistedException("Quantity.Multiplyy");
             Quantity quantity = qtype.getQuantity() as Quantity;
-            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
-            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
-            float value = left_value_byPrimary * right_value_byPrimary; 
+            double left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            double right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            double value = left_value_byPrimary * right_value_byPrimary; 
             quantity.Value = value;
             return quantity;
         }
@@ -35,9 +35,9 @@ namespace UOM.Quantities
             IQuantityType qtype = Type.Divide(right.Type);
             if(qtype.Equals(null)) throw new QuantityTypeNotExistedException("Quantity.Divide");
             Quantity quantity = qtype.getQuantity() as Quantity;
-            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
-            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
-            float value = left_value_byPrimary / right_value_byPrimary;
+            double left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            double right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            double value = left_value_byPrimary / right_value_byPrimary;
             quantity.Value = value;            
             return quantity;
         }
@@ -48,9 +48,9 @@ namespace UOM.Quantities
                 throw new  NotSameQuantityForAddOrSubstractException(message);
             }
             QuantityType _type = Type as QuantityType;
-            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
-            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
-            float value = left_value_byPrimary + right_value_byPrimary;
+            double left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            double right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            double value = left_value_byPrimary + right_value_byPrimary;
             Quantity quantity = _type.getQuantity() as Quantity;
             quantity.Value = value;
             return quantity;
@@ -62,9 +62,9 @@ namespace UOM.Quantities
                 throw new NotSameQuantityForAddOrSubstractException(message);
             }
             QuantityType _type = Type as QuantityType;
-            float left_value_byPrimary = Unit.Converter.toPrimary(Value);
-            float right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
-            float value = left_value_byPrimary - right_value_byPrimary;
+            double left_value_byPrimary = Unit.Converter.toPrimary(Value);
+            double right_value_byPrimary = right.Unit.Converter.toPrimary(right.Value);
+            double value = left_value_byPrimary - right_value_byPrimary;
             Quantity quantity = _type.getQuantity() as Quantity;
             quantity.Value = value;
             return quantity;
@@ -75,8 +75,8 @@ namespace UOM.Quantities
                 string message = "Cann't convert to the Quantity " + unit.Sys.QType.Id.Name + "'unit!";
                 throw new NotMatchedBetweenQuantityTypeAndUnitException(message);
             }
-            float toPrimaryValue = Unit.Converter.toPrimary(Value);
-            float fromPrimaryValue = unit.Converter.fromPrimary(toPrimaryValue);
+            double toPrimaryValue = Unit.Converter.toPrimary(Value);
+            double fromPrimaryValue = unit.Converter.fromPrimary(toPrimaryValue);
             Quantity result =Type.getQuantity() as Quantity;
             result.Unit = unit;
             result.Value = fromPrimaryValue;

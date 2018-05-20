@@ -16,7 +16,7 @@ namespace UOM.Quantities
         IQuantity Divide(IQuantity quantity);
         IQuantity Add(IQuantity quantity);
         IQuantity Substract(IQuantity quantity);
-        float Value{
+        double Value{
             get;
         }
     }

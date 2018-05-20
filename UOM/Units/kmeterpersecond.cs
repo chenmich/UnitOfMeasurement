@@ -5,7 +5,7 @@ namespace UOM.Units
     public class kmeterpersecond:meterpersecond
     {
         public kmeterpersecond():base(){
-            Converter = new ScaleConverter(1000f);
+            Converter = new ScaleConverter(1.0e+3);
         }
     }
 }

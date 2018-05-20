@@ -6,7 +6,7 @@ namespace UOM.Units
     public class knewton:newton
     {
         public knewton():base(){
-            Converter = new ScaleConverter(1000f);
+            Converter = new ScaleConverter(1.0e+3);
         }
     }
 }
