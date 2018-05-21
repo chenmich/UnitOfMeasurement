@@ -35,10 +35,19 @@ namespace CreateQuantityClass
             };
 
             QT[] qtps = new QT[]{
-                new QT(){qtCode="1", qtName="Identity", qtId=Guid.NewGuid(), qtExp=new QTExpression(){leftCode=null, rightCode=null, op=null}},
-                new QT(){qtCode="2", qtName="Length", qtId=Guid.NewGuid(), qtExp=new QTExpression(){leftCode=null, rightCode=null, op=null}},
-                new QT(){qtCode="3", qtName="Mass", qtId=Guid.NewGuid(), qtExp=new QTExpression(){leftCode=null, rightCode=null, op=null}},
-                new QT(){qtCode="100", qtName="Velocity", qtId=Guid.NewGuid(), qtExp=new QTExpression(){leftCode="2", rightCode="4", op="Multiply"}}
+                new QT(){qtCode="1", qtName="Identity", qtId=Guid.NewGuid(), 
+                            qtExp=new QTExpression(){leftCode=null, rightCode=null, op=null}},
+
+                new QT(){qtCode="2", qtName="Length", qtId=Guid.NewGuid(), 
+                            qtExp=new QTExpression(){leftCode=null, rightCode=null, op=null}},
+
+                new QT(){qtCode="3", qtName="Mass", qtId=Guid.NewGuid(), 
+                            qtExp=new QTExpression(){leftCode=null, rightCode=null, op=null}},
+                new QT(){qtCode="4", qtName="Time", qtId=Guid.NewGuid(),
+                            qtExp=new QTExpression(){leftCode=null, rightCode=null, op=null}},
+                            
+                new QT(){qtCode="100", qtName="Velocity", qtId=Guid.NewGuid(), 
+                            qtExp=new QTExpression(){leftCode="2", rightCode="4", op="Multiply"}}
             };
 
             List<QT> qts = new List<QT>();
