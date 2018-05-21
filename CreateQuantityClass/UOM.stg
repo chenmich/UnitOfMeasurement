@@ -1,27 +1,26 @@
-delimiters $, $
+delimiters "$", "$"
 
-quantityTypeSets()::=
+quantityTypeSets(QTSet)::=
 <<
     <QuantityTypeSet>
-        $QuantityType()$
+    $QTSet:QuantityType(); wrap, anchor, separator="\n"$
     </QuantityTypeSet>
-
-
 >>
 
-QuantityType()::=
+QuantityType(qt)::=
 <<
-    <QuantityType code="1" >
-        <name>Identity</name>
-        <id>ef5dc410-e551-4f44-838a-35a1ebff0307</id>
-        $QuantityTypeExpression()$
+    <QuantityType code="$qt.qtCode$" >
+        <name>$qt.qtName$</name>
+        <id>$qt.qtId$</id>
+    $QuantityTypeExpression(qt.qtExp)$
     </QuantityType>
 >>
-QuantityTypeExpression()::=
+
+QuantityTypeExpression(qtexp)::=
 <<
     <expression>
-            <left ref="2"></left>
-            <right ref="2"></right>
-            <operator>Multiply</operator>
-    </expression>
+        $qtexp.leftCode: {code | <left ref="$code$"></left>}$
+        $qtexp.rightCode: {code | <right ref="$code$"></right>}$
+        $qtexp.op: {qtop |<operator>$qtop$</operator>}$
+    </expression>    
 >>
