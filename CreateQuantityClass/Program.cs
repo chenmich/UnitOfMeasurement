@@ -13,14 +13,10 @@ namespace CreateQuantityClass
         { 
             string currentdir = Directory.GetCurrentDirectory();
             DirectoryInfo groupDir = new DirectoryInfo(currentdir);
-            //DirectoryInfo groupdir = dirinfo.Parent; 
-            //groupdir = groupdir.Parent;
-            //Console.WriteLine(groupDir.FullName);
             string templategroupfile = groupDir.FullName + "/UOM.stg";
-            TemplateGroup group = new  TemplateGroupFile(templategroupfile);
-            Template st = group.GetInstanceOf("quantityTypeSets");
-            st.Add("QTSet", getQTs() );
-            Console.WriteLine(st.Render()); 
+            SIQTSet siqts = new SIQTSet(templategroupfile);
+            Console.WriteLine(siqts.getQTs());
+            
         }
 
         static List<QT> getQTs(){
