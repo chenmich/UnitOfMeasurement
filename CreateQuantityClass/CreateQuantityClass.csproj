@@ -9,4 +9,8 @@
     <PackageReference Include="StringTemplate4" Version="4.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UOM\UOM.csproj" />
+  </ItemGroup>
+
 </Project>
